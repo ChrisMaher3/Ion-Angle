@@ -7,7 +7,16 @@ df = pd.read_csv(INPUT_FILE)
 df.columns = ["AR", "Flux"]
 df["Angle_deg"] = np.degrees(np.arctan(1 / df["AR"]))
 
-theta_theory = 8
+print("Plasma Potential")
+PlasmaP = int(input())
+
+top_vel = (PlasmaP * 1.60217653e-19) / 3.321e-26
+Vx = np.sqrt(top_vel)
+print(Vx)
+
+theta_theory = np.degrees(np.arctan(2196.42/Vx))
+print(theta_theory)
+
 FIRST_BIN = 4.399
 edges_rest = np.linspace(FIRST_BIN, 90, 26)
 angle_bins = np.concatenate(([0, FIRST_BIN], edges_rest[1:]))
